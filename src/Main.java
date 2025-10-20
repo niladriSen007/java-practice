@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -31,7 +33,7 @@ public class Main {
         Function<Integer, Integer> square = x -> x * x;
         System.out.println("Function will return the cube of the number -> " +
                 triple.andThen(square).apply(10)
-                );
+        );
 
         //Consumer -> Takes input and returns void
         Consumer<Integer> consumer = x -> System.out.println(x);
@@ -61,5 +63,13 @@ public class Main {
         //BinaryOperator -> Integer operator(When input and output are same type)
         BinaryOperator<Integer> binaryOperator = (x, y) -> x + y;
         System.out.println("BinaryOperator will return the sum of the numbers -> " + binaryOperator.apply(10, 20));
+
+
+        // Method Reference
+        List<String> names = Arrays.asList("Ram", "Shyam");
+//        names.forEach(x -> System.out.println(x));
+        names.forEach(System.out::println);
+
+        //Constructor References
     }
 }
