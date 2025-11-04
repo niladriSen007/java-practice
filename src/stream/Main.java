@@ -1,3 +1,5 @@
+package stream;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.*;
@@ -6,6 +8,13 @@ import java.util.function.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
+//        int[] arr = {1, 2, 3, 4, 5};
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
+//
+//        int[] a = new int[5];
 //        Thread t1 = new Thread(() -> {
 //            System.out.println("Hii");
 //        });

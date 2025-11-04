@@ -48,7 +48,7 @@ This project has been successfully upgraded from Java 17 to Java 21 LTS (Long Te
 ✅ **Runtime**: Java 21 features working correctly
 
 ### Test Run:
-The `Java21FeaturesDemo.java` demonstrates:
+The `stream.Java21FeaturesDemo.java` demonstrates:
 - Switch expressions (Java 14+ feature)
 - Records (Java 14+ feature) 
 - Text blocks (Java 15+ feature)
@@ -68,7 +68,7 @@ java -cp target\classes <ClassName>
 
 ### Example - Running the Java 21 features demo:
 ```bash
-java -cp target\classes Java21FeaturesDemo
+java -cp target\classes stream.Java21FeaturesDemo
 ```
 
 ## Benefits of Java 21 LTS
@@ -86,12 +86,12 @@ Java 21 is a Long Term Support (LTS) release that provides:
 ```
 java-practice/
 ├── src/
-│   ├── Main.java                    # Original main class
-│   ├── Calc.java                    # Calculator interface
-│   ├── Java21FeaturesDemo.java     # Java 21 features demonstration
-│   ├── StreamBasic.java             # Stream operations examples
-│   ├── StreamDemo.java              # Stream demonstrations
-│   ├── StreamEasy.java              # Easy stream examples
+│   ├── stream.Main.java                    # Original main class
+│   ├── stream.Calc.java                    # Calculator interface
+│   ├── stream.Java21FeaturesDemo.java     # Java 21 features demonstration
+│   ├── stream.StreamBasic.java             # Stream operations examples
+│   ├── stream.StreamDemo.java              # Stream demonstrations
+│   ├── stream.StreamEasy.java              # Easy stream examples
 │   └── array/
 │       └── array.RotateArray.java      # Array-related problems
 ├── pom.xml                          # Maven configuration (Java 21)
