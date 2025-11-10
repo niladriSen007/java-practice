@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class StreamIntermediate {
+public class Stream3 {
     public static void main(String[] args) {
         List<Employee> employees = Arrays.asList(
                 new Employee(1, "John", "HR", 50000),
@@ -53,7 +53,7 @@ public class StreamIntermediate {
         List<String> words = Arrays.asList("apple", "bat", "ball", "cat", "banana", "dog","goat");
         System.out.println(words.stream().collect(Collectors.groupingBy(x->x.length())));
 
-        //7. group employes by department and calculate average salary of each department
+        //7. group employees by department and calculate average salary of each department
         System.out.println(employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment,
                         Collectors.averagingDouble(Employee::getSalary))));

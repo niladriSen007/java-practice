@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class StreamBasic {
+public class Stream1 {
     public static void main(String[] args) {
 
         //1. Filter even numbers from a stream of integers
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 15, 6, 7, 8, 9, 10, 11);
-        List<Integer> list1 = list.stream().filter(x -> x % 2 == 0).collect(Collectors.toList());
+        List<Integer> list1 = list.stream().filter(x -> x % 2 == 0).toList();
         System.out.println("1) Filter even numbers from the list: " + list1);
 
         //2. Converts numbers in list to squares

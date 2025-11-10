@@ -89,9 +89,9 @@ java-practice/
 │   ├── stream.Main.java                    # Original main class
 │   ├── stream.Calc.java                    # Calculator interface
 │   ├── stream.Java21FeaturesDemo.java     # Java 21 features demonstration
-│   ├── stream.StreamBasic.java             # Stream operations examples
+│   ├── stream.Stream1.java             # Stream operations examples
 │   ├── stream.StreamDemo.java              # Stream demonstrations
-│   ├── stream.StreamEasy.java              # Easy stream examples
+│   ├── stream.Stream2.java              # Easy stream examples
 │   └── array/
 │       └── array.RotateArray.java      # Array-related problems
 ├── pom.xml                          # Maven configuration (Java 21)
