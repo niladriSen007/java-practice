@@ -4,6 +4,7 @@ import dtos.Employee;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -56,18 +57,26 @@ public class Stream4 {
                 input.chars()
                         .mapToObj(c -> (char) c)
                         .collect(
-                            Collectors.groupingBy(Function.identity(),Collectors.counting())
+                                Collectors.groupingBy(Function.identity(), Collectors.counting())
                         ).entrySet().stream().max(
-                                Comparator.comparing(ch->ch.getValue())).get().getKey());
+                                Comparator.comparing(ch -> ch.getValue())).get().getKey());
 
 
         //find first non repeating character in a string
-        String inp = "array";
-        System.out.println(inp.chars().mapToObj(c->(char) c).collect(
+        String inp = "orange";
+        System.out.println(inp.chars().mapToObj(c -> (char) c).collect(
                 Collectors.groupingBy(
                         Function.identity(),
+                        LinkedHashMap::new,
                         Collectors.counting()
                 )
-        ).entrySet().stream().min(Comparator.comparing(elem->elem.getValue())).get().getKey());
+        ).entrySet().stream().min(Comparator.comparing(elem -> elem.getValue())).get().getKey());
+        System.out.println(Arrays.stream(inp.toLowerCase().split("")).collect(
+                Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new,
+                        Collectors.counting()
+                )
+        ).firstEntry().getKey());
     }
 }
