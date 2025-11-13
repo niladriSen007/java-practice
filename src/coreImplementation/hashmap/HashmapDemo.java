@@ -1,4 +1,4 @@
-package coreImplementation;
+package coreImplementation.hashmap;
 
 import java.util.LinkedList;
 
