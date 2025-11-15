@@ -42,6 +42,8 @@ public class Stream1 {
         System.out.println("8) Minimum number in the list: " + min.orElse(null));
 
         //9. Sum of square of even numbers in a list
-        System.out.println("9) Sum of square of even numbers: "+list.stream().filter(x -> x % 2 == 0).map(x -> x * x).reduce(0, (x, y) -> x + y));
+        System.out.println("9) Sum of square of even numbers: "+list.stream()
+                .filter(x -> x % 2 == 0).map(x -> x * x)
+                .reduce(0, (x, y) -> x + y));
     }
 }

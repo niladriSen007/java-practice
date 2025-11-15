@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Stream5 {
     public static void main(String[] args) {
@@ -30,9 +31,15 @@ public class Stream5 {
                 .max(Comparator.comparing(ch -> ch.getValue())).get().getKey());
 
 
-        //given a list of integers. compute the average of every 3-element sliding window
+        //given a list of integers. compute the average of every window_size element sliding window
         List<Integer> list = Arrays.asList(4, 8, 15, 16, 23, 42);
-        System.out.println(list.stream()); // TODO
+        int WINDOW_SIZE = 5;
+        System.out.println(IntStream.range(0, list.size() - (WINDOW_SIZE - 1))
+                .mapToObj(index -> list.subList(index, index + WINDOW_SIZE))
+                .map(elemWindow -> elemWindow.stream()
+                        .mapToInt(elem -> elem).average().orElse(0.0))
+                .toList()
+        ); // TODO
 
         //find the longest word in a sentence innoring case and punctuation
         String sentence = "The quick, brown fox jumped over the lazy dog!";

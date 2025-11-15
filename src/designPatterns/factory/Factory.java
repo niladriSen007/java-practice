@@ -1,50 +1,38 @@
 package designPatterns.factory;
 
-interface Product{
-    void displayInfo();
+interface Vehicle {
+    void ride();
 }
 
-class ConcreteProductA implements Product{
+class Bike implements Vehicle {
     @Override
-    public void displayInfo() {
-        System.out.println("This is Concrete Product A");
+    public void ride() {
+        System.out.println("Bike is being ridden");
     }
 }
 
-class ConcreteProductB implements Product{
+class Car implements Vehicle {
     @Override
-    public void displayInfo() {
-        System.out.println("This is Concrete Product B");
+    public void ride() {
+        System.out.println("Car is being driven");
     }
 }
 
-interface ProductFactory {
-    Product createProduct();
-}
 
-class ConcreteProductAFactory implements ProductFactory{
-    @Override
-    public Product createProduct() {
-        return new ConcreteProductA();
-    }
-}
-
-class ConcreteProductBFactory implements ProductFactory{
-    @Override
-    public Product createProduct() {
-        return new ConcreteProductB();
+class VehicleFactory {
+    public static Vehicle createVehicle(String vehicleType) {
+        return switch (vehicleType.toLowerCase()) {
+            case "bike" -> new Bike();
+            case "car" -> new Car();
+            default -> throw new IllegalArgumentException("Please provide proper vehicle type");
+        };
     }
 }
 
 
 public class Factory {
     public static void main(String[] args) {
-        ProductFactory factoryOne = new ConcreteProductAFactory();
-        Product product = factoryOne.createProduct();
-        product.displayInfo();
-
-        ProductFactory factoryTwo = new ConcreteProductBFactory();
-        Product productB = factoryTwo.createProduct();
-        productB.displayInfo();
+        Vehicle vehicle = VehicleFactory.createVehicle("Bike");
+        vehicle.ride();
     }
 }

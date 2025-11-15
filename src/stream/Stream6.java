@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 enum SalaryRange {
     LOW,
@@ -180,5 +182,21 @@ public class Stream6 {
                         )
                 ).entrySet().stream().filter(elem -> elem.getValue() >= 3)
                 .map(elem -> elem.getKey()).toList());
+
+
+        //find bigram(pair of consecutive words) frequencies from a paragraph
+        String p = "Java is great and java is fun, Java is powerful";
+        String[] words = p.toLowerCase().replaceAll("[^a-z\\s]", "").split(" ");
+        List<String> list = IntStream.range(0, words.length - 1)
+                .mapToObj(index -> words[index] + " " + words[index + 1])
+                .toList();
+        System.out.println(list);
+        System.out.println(list.stream().collect(
+                Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.counting()
+                )
+        ));
+
     }
 }

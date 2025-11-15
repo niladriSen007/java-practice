@@ -140,7 +140,8 @@ public class StreamPlaylist {
 
         //group the numbers by the range in which they belongs to
         int[] ao = {2, 3, 10, 14, 20, 24};
-        System.out.println(Arrays.stream(ao).boxed().collect(
+        System.out.println(Arrays.stream(ao).boxed()
+                .collect(
                 Collectors.groupingBy(ele -> (ele.intValue() / 10) * 10)
         ));
 

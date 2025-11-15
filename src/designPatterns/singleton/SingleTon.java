@@ -1,7 +1,7 @@
 package designPatterns.singleton;
 
 public class SingleTon {
-    private static volatile SingleTon instance;
+    private static SingleTon instance = null;
 
     private SingleTon() {
     }
