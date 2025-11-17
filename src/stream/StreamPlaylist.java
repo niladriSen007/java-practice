@@ -3,6 +3,7 @@ package stream;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StreamPlaylist {
     public static void main(String[] args) {
@@ -142,8 +143,8 @@ public class StreamPlaylist {
         int[] ao = {2, 3, 10, 14, 20, 24};
         System.out.println(Arrays.stream(ao).boxed()
                 .collect(
-                Collectors.groupingBy(ele -> (ele.intValue() / 10) * 10)
-        ));
+                        Collectors.groupingBy(ele -> (ele.intValue() / 10) * 10)
+                ));
 
 
         //TODO - Doubt
@@ -157,5 +158,43 @@ public class StreamPlaylist {
         //find product of first two elements of the array
         List<Integer> list = Arrays.asList(12, 5, 4, 5, 6);
         System.out.println(list.stream().limit(2).reduce(1, (ax, b) -> ax * b));
+
+        // Important: TODO
+        //group/pair anagram from a list of strings, for 1 word consider 1 anagram
+        String[] ip = {"pat", "tap", "pan", "nap", "tree"};
+        System.out.println(Arrays.stream(ip).collect(
+                Collectors.groupingBy(
+                        e -> Arrays.stream(
+                                        e.toLowerCase()
+                                                .split(""))
+                                .sorted().toList())
+        ).entrySet().stream().map(ele -> ele.getValue()).toList());
+
+
+        //multiply alternative numbers in an array
+        List<Integer> list1 = Arrays.asList(11, 2, 3, 4, 5, 6, 7);
+        System.out.println(IntStream.range(0, list1.toArray().length)
+                .filter(index -> index % 2 == 0)
+                .map(list1::get)
+                .reduce(1, (elem1, elem2) -> elem1 * elem2));
+
+        // multiply 1st<->last, 2nd<->2nd last, to consecutive
+        int[] q = {4, 5, 1, 7, 2, 9};
+        IntStream.range(0, q.length / 2)
+                .map(index -> q[index] * q[q.length - index - 1])
+                .forEach(System.out::println);
+
+        //move all zeroes to the beginning
+        int[] z = {5,0,1,0,8,0};
+        System.out.println(Arrays.stream(z).boxed().toList().stream().collect(
+                Collectors.partitioningBy(e -> e != 0)
+        ).values().stream().flatMap(el -> el.stream()).toList());
+
+
+        //return true if an array has only distinct elements or return false
+        int[] d = {5,0,1,0,8,0};
+        System.out.println(Arrays.stream(d).boxed().distinct().toList().size() == d.length);
+        //we can do this using groupingby also
+
     }
 }

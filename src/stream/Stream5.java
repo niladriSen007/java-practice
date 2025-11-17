@@ -41,7 +41,7 @@ public class Stream5 {
                 .toList()
         ); // TODO
 
-        //find the longest word in a sentence innoring case and punctuation
+        //find the longest word in a sentence ignoring case and punctuation
         String sentence = "The quick, brown fox jumped over the lazy dog!";
         System.out.println(Arrays.stream(sentence.toLowerCase().replaceAll("[^a-z\\s]", "").split(" "))
                 .max((x, y) -> x.length() - y.length()).orElse("")
