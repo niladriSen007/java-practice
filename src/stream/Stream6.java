@@ -187,6 +187,7 @@ public class Stream6 {
         //find bigram(pair of consecutive words) frequencies from a paragraph
         String p = "Java is great and java is fun, Java is powerful";
         String[] words = p.toLowerCase().replaceAll("[^a-z\\s]", "").split(" ");
+        System.out.println(words.length); // 10
         List<String> list = IntStream.range(0, words.length - 1)
                 .mapToObj(index -> words[index] + " " + words[index + 1])
                 .toList();
