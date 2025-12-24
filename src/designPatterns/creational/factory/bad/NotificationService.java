@@ -1,4 +1,4 @@
-package designPatterns.factory.bad;
+package designPatterns.creational.factory.bad;
 
 class EmailNotification {
     public void send(String message) {

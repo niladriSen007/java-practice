@@ -1,4 +1,4 @@
-package designPatterns.factory;
+package designPatterns.creational.factory;
 
 interface Vehicle {
     void ride();

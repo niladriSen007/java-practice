@@ -1,4 +1,4 @@
-package designPatterns.singleton;
+package designPatterns.creational.singleton;
 
 public class SingleTon {
     private static volatile SingleTon instance = null;

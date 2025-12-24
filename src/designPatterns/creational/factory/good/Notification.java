@@ -1,4 +1,4 @@
-package designPatterns.factory.good;
+package designPatterns.creational.factory.good;
 
 @FunctionalInterface
 public interface Notification {
