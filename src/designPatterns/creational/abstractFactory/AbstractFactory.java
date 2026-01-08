@@ -10,7 +10,6 @@ interface Checkbox {
 
 interface GUIFactory {
     Button createButton();
-
     Checkbox createCheckbox();
 }
 

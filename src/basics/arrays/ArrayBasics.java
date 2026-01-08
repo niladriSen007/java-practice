@@ -1,4 +1,4 @@
-package basics;
+package basics.arrays;
 
 public class ArrayBasics {
     static void main() {
