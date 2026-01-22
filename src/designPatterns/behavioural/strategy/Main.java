@@ -1,4 +1,4 @@
-package designPatterns.strategy;
+package designPatterns.behavioural.strategy;
 
 public class Main {
     public static void main(String[] args) {

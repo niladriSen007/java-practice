@@ -1,4 +1,4 @@
-package designPatterns.strategy;
+package designPatterns.behavioural.strategy;
 
 public class PaymentService {
 
