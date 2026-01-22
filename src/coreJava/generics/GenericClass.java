@@ -1,6 +1,5 @@
 package coreJava.generics;
 
-
 class TwoGeneric<T, U> {
     private T first;
     private U second;
