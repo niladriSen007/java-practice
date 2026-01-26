@@ -5,4 +5,5 @@ public class EmailNotificationCreator implements NotificationCreator {
     public Notification createNotification() {
         return new EmailNotification();
     }
+
 }

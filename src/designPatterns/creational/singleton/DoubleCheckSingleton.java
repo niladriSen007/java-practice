@@ -3,8 +3,10 @@ package designPatterns.creational.singleton;
 public class DoubleCheckSingleton {
     private static volatile DoubleCheckSingleton instance;
 
-    private DoubleCheckSingleton() {}
+    private DoubleCheckSingleton() {
+    }
 
+    @SuppressWarnings("DoubleCheckedLocking")
     public static DoubleCheckSingleton getInstance() {
         if (instance == null) {
             synchronized (DoubleCheckSingleton.class) {

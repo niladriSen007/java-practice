@@ -1,7 +1,7 @@
 package designPatterns.creational.factory.good;
 
 public class NotificationClient {
-    static void main() {
+    public static void main() {
         NotificationCreator creator;
 
         // Send an email notification
