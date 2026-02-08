@@ -39,11 +39,11 @@ public class GenericClass {
         integerBox.set(10);
         stringBox.set("Hello Generics");
 
-        System.out.println(STR."Integer Value: \{integerBox.get()}");
+        System.out.println("Integer Value: " + integerBox.get());
         System.out.println("String Value: " + stringBox.get());
 
 
         TwoGeneric<Integer, String> twoGeneric = new TwoGeneric<>(1, "One");
-        System.out.println(STR."First: \{twoGeneric.getFirst()}, Second: \{twoGeneric.getSecond()}");
+        System.out.println("First: " + twoGeneric.getFirst() + ", Second: " + twoGeneric.getSecond());
     }
 }

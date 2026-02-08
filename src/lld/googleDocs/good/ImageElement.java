@@ -9,7 +9,7 @@ public class ImageElement implements  DocumentElement{
 
     @Override
     public String render() {
-        return STR."<img src='\{imagePath}' />";
+        return "Rendering image from path: " + imagePath;
     }
 
 }

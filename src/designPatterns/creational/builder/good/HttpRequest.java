@@ -13,7 +13,7 @@ public class HttpRequest {
     private final int timeout;
 
 
-    private HttpRequest(Builder builder){
+    private HttpRequest(Builder builder) {
         this.url = builder.url;
         this.method = builder.method;
         this.headers = builder.headers;
@@ -24,10 +24,17 @@ public class HttpRequest {
 
     @Override
     public String toString() {
-        return STR."HttpRequest{url='\{url}', method='\{method}', headers=\{headers}, queryParams=\{queryParams}, body='\{body}', timeout=\{timeout}}";
+        return "HttpRequest{" +
+                "url='" + url + '\'' +
+                ", method='" + method + '\'' +
+                ", headers=" + headers +
+                ", queryParams=" + queryParams +
+                ", body='" + body + '\'' +
+                ", timeout=" + timeout +
+                '}';
     }
 
-    public static class Builder{
+    public static class Builder {
         private final String url;
         private String method = "GET";
         private Map<String, String> headers = new HashMap<>();
@@ -35,36 +42,36 @@ public class HttpRequest {
         private String body;
         private int timeout = 5000;
 
-        public Builder(String url){
+        public Builder(String url) {
             this.url = url;
         }
 
-        public Builder setMethod(String method){
+        public Builder setMethod(String method) {
             this.method = method;
             return this;
         }
 
-        public Builder setHeaders(String key, String value){
+        public Builder setHeaders(String key, String value) {
             this.headers.put(key, value);
             return this;
         }
 
-        public Builder setQueryParams(String key, String value){
+        public Builder setQueryParams(String key, String value) {
             this.queryParams.put(key, value);
             return this;
         }
 
-        public Builder setBody(String body){
+        public Builder setBody(String body) {
             this.body = body;
             return this;
         }
 
-        public Builder setTimeout(int timeout){
+        public Builder setTimeout(int timeout) {
             this.timeout = timeout;
             return this;
         }
 
-        public HttpRequest build(){
+        public HttpRequest build() {
             return new HttpRequest(this);
         }
 

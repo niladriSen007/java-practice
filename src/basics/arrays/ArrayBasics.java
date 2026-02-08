@@ -9,7 +9,7 @@ public class ArrayBasics {
         };
         for (int[] ints : twoD) {
             for (int anInt : ints) {
-                System.out.print(STR."\{anInt} ");
+                System.out.print(anInt + " ");
             }
             System.out.println();
         }
@@ -20,7 +20,7 @@ public class ArrayBasics {
         dyn[1][1] = 40;
         for (int[] ints : dyn) {
             for (int anInt : ints) {
-                System.out.print(STR."\{anInt} ");
+                System.out.print(anInt + " ");
             }
         }
     }
