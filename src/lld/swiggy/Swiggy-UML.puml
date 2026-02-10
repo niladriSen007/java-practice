@@ -1,0 +1,209 @@
+@startuml Swiggy LLD - Class Diagram
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+title Swiggy - Low Level Design Class Diagram
+
+package "lld.swiggy" {
+  class Main {
+    + main(String[] args): void
+  }
+  class Swiggy <<final>> {
+    + Swiggy()
+    + {static} initializeRestaurants(): void
+    + searchRestaurantsByLocation(String): List<Restaurant>
+    + addToCart(User, String): void
+    + createInstantOrder(User, String, PaymentContext): Order
+    + createScheduledOrder(User, String, PaymentContext, String): Order
+    + checkout(User, String, PaymentContext, IOrderFactory): Order
+    + payForOrder(User, Order): void
+    + printUserCart(User): void
+  }
+  Main ..> Swiggy : uses
+}
+
+package "models" {
+  class User {
+    - userId: int
+    - userName: String
+    - userAddress: String
+    - cart: Cart
+    + User(int, String, String)
+    + getCart(): Cart
+    + getUserId(): int
+    + getUserName(): String
+    + getUserAddress(): String
+  }
+  class Cart {
+    - restaurant: Restaurant
+    - menuItems: List<MenuItem>
+    + addMenuItem(MenuItem): void
+    + removeMenuItem(MenuItem): void
+    + getTotalCost(): double
+    + isCartEmpty(): boolean
+    + clearCart(): void
+    + getRestaurant(): Restaurant
+    + getMenuItems(): List<MenuItem>
+  }
+  class Restaurant {
+    - restaurantId: int
+    - restaurantName: String
+    - restaurantAddress: String
+    - menuItems: List<MenuItem>
+    + getMenuItems(): List<MenuItem>
+    + addMenuItem(MenuItem): void
+    + getRestaurantName(): String
+    + getRestaurantAddress(): String
+  }
+  class MenuItem {
+    - menuItemId: String
+    - menuItemName: String
+    - menuItemPrice: double
+    + getMenuItemId(): String
+    + getMenuItemName(): String
+    + getMenuItemPrice(): double
+  }
+  abstract class Order {
+    # orderId: int
+    # user: User
+    # restaurant: Restaurant
+    # menuItems: List<MenuItem>
+    # totalCost: double
+    # paymentContext: PaymentContext
+    # scheduled: String
+    + processPayment(): boolean
+    + setPaymentContext(PaymentContext): void
+    + setMenuItems(List<MenuItem>): void
+    + calculateTotalCost(): double
+    + deliveryType(): String {abstract}
+  }
+  class DeliveryOrder {
+    - deliveryAddress: String
+    + deliveryType(): String
+  }
+  class PickupOrder {
+    - restaurantAddress: String
+    + deliveryType(): String
+  }
+  User "1" *-- "1" Cart : has
+  Cart "1" o-- "1" Restaurant : for
+  Cart "1" o-- "*" MenuItem : contains
+  Restaurant "1" o-- "*" MenuItem : has
+  Order <|-- DeliveryOrder
+  Order <|-- PickupOrder
+  Order "1" o-- "1" User : for
+  Order "1" o-- "1" Restaurant : from
+  Order "1" o-- "*" MenuItem : contains
+  Order "1" o-- "1" PaymentContext : uses
+}
+
+package "factory.order" {
+  interface IOrder {
+    + createOrder(User, Cart, Restaurant, List<MenuItem>, PaymentContext, String): Order
+  }
+  interface IOrderFactory {
+    + createOrder(): IOrder
+    + createAndProcessOrder(...): Order
+  }
+  class InstantOrder {
+    + createOrder(...): Order
+  }
+  class InstantOrderFactory {
+    + createOrder(): IOrder
+  }
+  class ScheduledOrder {
+    - scheduledTime: String
+    + createOrder(...): Order
+  }
+  class ScheduledOrderFactory {
+    - scheduledTime: String
+    + createOrder(): IOrder
+  }
+  IOrder <|.. InstantOrder
+  IOrder <|.. ScheduledOrder
+  IOrderFactory <|.. InstantOrderFactory
+  IOrderFactory <|.. ScheduledOrderFactory
+  InstantOrderFactory ..> InstantOrder : creates
+  ScheduledOrderFactory ..> ScheduledOrder : creates
+}
+
+package "factory.notification" {
+  interface INotification {
+    + sendNotification(String): void
+  }
+  interface INotificationCreator {
+    + createNotification(): INotification
+    + sendNotification(String): void
+  }
+  class EmailNotification {
+    + sendNotification(String): void
+  }
+  class EmailNotificationFactory {
+    + createNotification(): INotification
+  }
+  class SmsNotification {
+    + sendNotification(String): void
+  }
+  class SmsNotificationFactory {
+    + createNotification(): INotification
+  }
+  INotification <|.. EmailNotification
+  INotification <|.. SmsNotification
+  INotificationCreator <|.. EmailNotificationFactory
+  INotificationCreator <|.. SmsNotificationFactory
+}
+
+package "manager" {
+  class OrderManager <<singleton>> {
+    - orders: List<Order>
+    - {static} orderManager: OrderManager
+    + {static} getInstance(): OrderManager
+    + addOrder(Order): void
+    + removeOrder(Order): void
+    + listOrders(): void
+  }
+  class RestaurantManager <<singleton>> {
+    - restaurants: List<Restaurant>
+    - {static} restaurantManager: RestaurantManager
+    + {static} getInstance(): RestaurantManager
+    + addRestaurant(Restaurant): void
+    + searchRestaurantsByLocation(String): List<Restaurant>
+  }
+  OrderManager "1" o-- "*" Order : manages
+  RestaurantManager "1" o-- "*" Restaurant : manages
+}
+
+package "strategy" {
+  interface PaymentStrategy {
+    + processPayment(double): void
+  }
+  class PaymentContext {
+    - paymentStrategy: PaymentStrategy
+    + processPayment(double): void
+  }
+  class CreditCardPaymentStrategy {
+    + processPayment(double): void
+  }
+  class DebitCardPaymentStrategy {
+    + processPayment(double): void
+  }
+  PaymentStrategy <|.. CreditCardPaymentStrategy
+  PaymentStrategy <|.. DebitCardPaymentStrategy
+  PaymentContext o-- PaymentStrategy : uses
+}
+
+package "utils" {
+  class TimeUtils {
+    + {static} getCurrentTime(): String
+  }
+}
+
+Swiggy --> RestaurantManager : uses
+Swiggy --> OrderManager : uses
+Swiggy --> IOrderFactory : uses
+Swiggy --> User : uses
+Swiggy --> Cart : uses
+Swiggy --> PaymentContext : uses
+InstantOrder ..> TimeUtils : uses
+
+@enduml

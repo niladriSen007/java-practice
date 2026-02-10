@@ -4,6 +4,7 @@ import java.util.List;
 
 import lld.swiggy.models.Cart;
 import lld.swiggy.models.MenuItem;
+import lld.swiggy.models.Order;
 import lld.swiggy.models.Restaurant;
 import lld.swiggy.models.User;
 import lld.swiggy.strategy.PaymentContext;
@@ -12,7 +13,7 @@ public interface IOrderFactory {
 
     IOrder createOrder();
 
-    default void createAndProcessOrder(
+    default Order createAndProcessOrder(
             User user,
             Cart cart,
             Restaurant restaurant,
@@ -20,6 +21,7 @@ public interface IOrderFactory {
             PaymentContext paymentContext,
             String orderType) {
         IOrder order = createOrder();
-        order.createOrder(user, cart, restaurant, menuItems, paymentContext, orderType);
+        Order createdOrder = order.createOrder(user, cart, restaurant, menuItems, paymentContext, orderType);
+        return createdOrder;
     }
 }

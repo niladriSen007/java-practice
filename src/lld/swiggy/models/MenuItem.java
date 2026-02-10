@@ -1,17 +1,17 @@
 package lld.swiggy.models;
 
 public class MenuItem {
-    private int menuItemId;
+    private String menuItemId;
     private String menuItemName;
     private double menuItemPrice;
 
-    public MenuItem(int menuItemId, String menuItemName, double menuItemPrice) {
+    public MenuItem(String menuItemId, String menuItemName, double menuItemPrice) {
         this.menuItemId = menuItemId;
         this.menuItemName = menuItemName;
         this.menuItemPrice = menuItemPrice;
     }
 
-    public int getMenuItemId() {
+    public String getMenuItemId() {
         return menuItemId;
     }
 
@@ -23,7 +23,7 @@ public class MenuItem {
         return menuItemPrice;
     }
 
-    public void setMenuItemId(int menuItemId) {
+    public void setMenuItemId(String menuItemId) {
         this.menuItemId = menuItemId;
     }
 

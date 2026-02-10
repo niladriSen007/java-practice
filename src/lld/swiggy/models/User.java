@@ -37,4 +37,8 @@ public class User {
         this.userAddress = userAddress;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
 }

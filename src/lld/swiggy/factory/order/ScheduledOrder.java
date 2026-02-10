@@ -13,18 +13,14 @@ import lld.swiggy.strategy.PaymentContext;
 
 public class ScheduledOrder implements IOrder {
 
-    private String scheduledTime;
+    private final String scheduledTime;
 
-    public ScheduledOrder() {
-        this.scheduledTime = "";
+    public ScheduledOrder(String scheduledTime) {
+        this.scheduledTime = scheduledTime;
     }
 
     public String getScheduledTime() {
         return scheduledTime;
-    }
-
-    public void setScheduledTime(String scheduledTime) {
-        this.scheduledTime = scheduledTime;
     }
 
     @Override
