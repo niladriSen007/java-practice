@@ -28,7 +28,7 @@ public class ParkingSpot {
         if (!isSpotAvailable()) {
             throw new ParkingException("Parking spots are not available");
         }
-        if (!canBeParked(vehicle)) {
+        if (!canBeParked(vehicle.getVehicleSize())) {
             throw new ParkingException("Vehicle size " + vehicle.getVehicleSize().name() + " won't fit in " + this.getSpotSize().name() + " space");
         }
         this.parkedVehicle = vehicle;
