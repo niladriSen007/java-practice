@@ -28,7 +28,7 @@ public class Stream3 {
         );
 
         //1. Sort the list of employees by salary
-        System.out.println(employees.stream().sorted(Comparator.comparing(x->x.getSalary())).toList());
+        System.out.println(employees.stream().sorted(Comparator.comparing(x -> x.getSalary())).toList());
         System.out.println(employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).toList());
 
         //2. calculate the average age of a list of persons
@@ -47,16 +47,24 @@ public class Stream3 {
 
         //5. count occurances of each element in a list
         List<String> items = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
-        System.out.println(items.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting())));
+        System.out.println(items.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())));
 
         //6. Group a list of words by their length
-        List<String> words = Arrays.asList("apple", "bat", "ball", "cat", "banana", "dog","goat");
-        System.out.println(words.stream().collect(Collectors.groupingBy(x->x.length())));
+        List<String> words = Arrays.asList("apple", "bat", "ball", "cat", "banana", "dog", "goat");
+        System.out.println(words.stream().collect(Collectors.groupingBy(x -> x.length())));
 
         //7. group employees by department and calculate average salary of each department
         System.out.println(employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment,
                         Collectors.averagingDouble(Employee::getSalary))));
+
+        //8. group employees by department and calculate total salary of each department
+        System.out.println(employees.stream().collect(
+                Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.summingDouble(Employee::getSalary)
+                )
+        ));
 
     }
 }

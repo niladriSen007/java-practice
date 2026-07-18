@@ -23,9 +23,10 @@ public class Stream4 {
         System.out.println(employees.stream().
                 collect(Collectors.groupingBy(
                         Employee::getDepartment,
-                        Collectors.maxBy(
-                                Comparator.comparing(
-                                        Employee::getSalary)))));
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(
+                                        Comparator.comparing(Employee::getSalary)),
+                                opt -> opt.orElse(null)))));
 
         //find the departments having more than 1 employee
         //Note - for converting map to stream use map.entrySet().stream() so it will convert map to set of entries and then stream of entries

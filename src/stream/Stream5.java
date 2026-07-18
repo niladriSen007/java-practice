@@ -44,7 +44,7 @@ public class Stream5 {
         //find the longest word in a sentence ignoring case and punctuation
         String sentence = "The quick, brown fox jumped over the lazy dog!";
         System.out.println(Arrays.stream(sentence.toLowerCase().replaceAll("[^a-z\\s]", "").split(" "))
-                .max((x, y) -> x.length() - y.length()).orElse("")
+                .max(Comparator.comparingInt(String::length)).orElse("")
         );
 
         //find top 3 most frequent words in a paragraph
@@ -58,12 +58,38 @@ public class Stream5 {
                 sorted((x, y) -> Math.toIntExact(x.getValue() - y.getValue()))
                 .toList().reversed().stream().limit(3).toList());
 
+        System.out.println(Arrays.stream(paragraph.toLowerCase().replaceAll("[^a-z\\s]", "").split(" ")).collect(
+                        Collectors.groupingBy(
+                                Function.identity(),
+                                LinkedHashMap::new,
+                                Collectors.counting())
+                ).entrySet().stream().
+                sorted((x, y) -> y.getValue().compareTo(x.getValue())).
+                limit(3).toList());
+
 
         //reverse each word in a sentence
         String[] s = paragraph.toLowerCase().replaceAll("[^a-z\\s]", "").split(" ");
         System.out.println(String.join(" ", Arrays.stream(s).map(elem -> new StringBuilder(elem).reverse()).toList()));
         System.out.println(String.join(" ", Arrays.stream(s).map(elem ->
                 Arrays.stream(elem.split("")).reduce("", (rev, ch) -> ch + rev)).toList()));
+
+
+        // find second highest salary of each department
+        System.out.println(employees.stream().collect(
+                Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                listEmployee -> listEmployee.stream().sorted(
+                                                Comparator.comparing(Employee::getSalary).reversed()
+                                        )
+                                        .skip(1)
+                                        .findFirst()
+                                        .orElse(null)
+                        )
+                )
+        ));
 
 
     }

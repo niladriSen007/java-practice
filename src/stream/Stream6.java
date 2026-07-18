@@ -146,6 +146,14 @@ public class Stream6 {
         ));
 
 
+        System.out.println(employees.stream().collect(
+                Collectors.groupingBy(emp ->{
+                    if(emp.getSalary() <= 50000) return "LOW";
+                    else return "HIGH";
+                }, Collectors.mapping(Employee::getName, Collectors.toList()))
+        ));
+
+
         //group characters by uppercase,lowercase,digits and others
         List<Character> chars = Arrays.asList(
                 'A', 'b', '3', 'Z', 'x', '#', '7', 'm', '@'
@@ -198,6 +206,8 @@ public class Stream6 {
                         Collectors.counting()
                 )
         ));
+
+
 
     }
 }
