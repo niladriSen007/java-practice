@@ -6,8 +6,6 @@ import questions.lld.parkingLot.strategy.pricing.PricingStrategy;
 import questions.lld.parkingLot.strategy.spotAllocate.SpotAllocationStrategy;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

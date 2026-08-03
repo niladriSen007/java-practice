@@ -4,7 +4,6 @@ import questions.lld.parkingLot.entity.*;
 import questions.lld.parkingLot.enums.SpotType;
 import questions.lld.parkingLot.enums.VehicleType;
 import questions.lld.parkingLot.facade.ParkingLot;
-import questions.lld.parkingLot.factory.CarFactory;
 import questions.lld.parkingLot.factory.VehicleFactory;
 import questions.lld.parkingLot.strategy.payment.CashPaymentStrategy;
 import questions.lld.parkingLot.strategy.pricing.HourlyPricingStrategy;
@@ -12,7 +11,7 @@ import questions.lld.parkingLot.strategy.spotAllocate.NearestFirstStrategy;
 
 import java.util.List;
 
-public class ParkingotClient {
+public class ParkingLotClient {
     public static void main(String[] args) {
         ParkingLot parkingLot = new ParkingLot(
                 new NearestFirstStrategy(),
